@@ -10,12 +10,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app.routing.module';
 import { AlunosModule } from './alunos/alunos.module';
+import { AlunoDetalheComponent } from './alunos/aluno-detalhe/aluno-detalhe.component';
+import { AlunosService } from './alunos/alunos.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AlunoDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { AlunosModule } from './alunos/alunos.module';
     AppRoutingModule,
     AlunosModule
   ],
-  providers: [],
+  providers: [AlunosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

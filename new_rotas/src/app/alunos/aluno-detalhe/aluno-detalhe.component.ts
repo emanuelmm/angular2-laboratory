@@ -1,20 +1,21 @@
-import { AlunosService } from './../alunos.service';
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
+import { AlunosService } from './../alunos.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-aluno-form',
-  templateUrl: './aluno-form.component.html',
-  styleUrls: ['./aluno-form.component.css']
+  selector: 'app-aluno-detalhe',
+  templateUrl: './aluno-detalhe.component.html',
+  styleUrls: ['./aluno-detalhe.component.css']
 })
-export class AlunoFormComponent implements OnInit {
+export class AlunoDetalheComponent implements OnInit {
 
-  aluno: any = {};
+  aluno: any;
   inscricao: Subscription;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private alunosService: AlunosService
   ) { }
 
@@ -23,14 +24,15 @@ export class AlunoFormComponent implements OnInit {
       (params: any) => {
         let id = params['id'];
         this.aluno = this.alunosService.getAluno(id);
-        if (this.aluno==null) {
-          this.aluno = {};
-        }
       }
-    )
+    );
   }
 
-  ngOnDestroy() {
+  editarContato() {
+    this.router.navigate(['/alunos', this.aluno.id, 'editar']);
+  }
+
+  ngOnDestroy() { 
     this.inscricao.unsubscribe();
   }
 
