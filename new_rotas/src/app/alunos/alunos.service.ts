@@ -9,7 +9,6 @@ export class AlunosService {
     {id:3, nome:'Aluno 03', email: 'aluno03@email.com'}
   ];
 
-
   getAlunos() {
     return this.alunos;
   }
